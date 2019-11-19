@@ -70,4 +70,18 @@ class block_opencast extends block_base {
         return $this->content;
     }
 
+    public function instance_create() {
+        global $DB;
+        $role = $DB->get_record('role', ['shortname' => 'user'], '*', MUST_EXIST);
+        role_change_permission($role->id, $this->context, 'moodle/course:ignorefilesizelimits', CAP_ALLOW);
+        return true;
+    }
+
+    public function instance_copy($fromid) {
+        global $DB;
+        $role = $DB->get_record('role', ['shortname' => 'user'], '*', MUST_EXIST);
+        role_change_permission($role->id, $this->context, 'moodle/course:ignorefilesizelimits', CAP_ALLOW);
+        return true;
+    }
+
 }
