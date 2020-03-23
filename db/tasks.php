@@ -42,4 +42,13 @@ $tasks = array(
         'dayofweek' => '*',
         'month' => '*'
     ),
+    array(
+        'classname' => 'block_opencast\task\create_series_cron',
+        'blocking' => 0,
+        'minute' => '0',
+        'hour' => '*',
+        'day' => '*',
+        'dayofweek' => '*',
+        'month' => '*'
+    ),
 );

@@ -576,6 +576,11 @@ class apibridge {
 
         if (!isset($series)) {
             $this->create_course_series($courseid);
+
+            // Without some delay the call to get_course_series will fail every so often.
+            // TODO make toggleable through settings?
+            usleep(100000);
+
             // Check success.
             $series = $this->get_course_series($courseid);
         }
