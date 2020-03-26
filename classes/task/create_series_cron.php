@@ -39,8 +39,10 @@ class create_series_cron extends \core\task\scheduled_task {
             FROM {course} c
             LEFT JOIN {tool_opencast_series} os
                 ON c.id = os.courseid
-            WHERE os.courseid IS NULL';
-        $courses = $DB->get_records_sql($sql);
+            WHERE os.courseid IS NULL
+                AND c.id <> :siteid';
+        $params = ['siteid' => SITEID];
+        $courses = $DB->get_records_sql($sql, $params);
 
         $i = 0;
         $count = count($courses);
